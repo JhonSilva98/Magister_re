@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magister_re/selectCards/openwebpage.dart';
-
+import 'package:url_launcher/url_launcher.dart' as url;
 class CardWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,20 +14,20 @@ class CardWeb extends StatelessWidget {
           fontFamily: "fontInstagram"
         ),
         ),
-        shape: RoundedRectangleBorder(
+        /*shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
           ),
-        ),
+        ),*/
       ),
       body: Container(
         child: Center(
           child: Column(
             children: <Widget>[
               tags("Unit Notícias", WebViewWebPage(), cor1: Color(0xff183883),cor2: Color(0xff255ba6), gerar: Row(children: <Widget>[Text("Unit Notícias",style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),), Icon(Icons.fiber_new, size: 80, color: Colors.white,)],), context: context),
-              tags("facebook", null,font: "fontFacebook", cor1: Color(0xff0065e0),cor2: Color(0xff18acfe)),
-              tags("instagram",null,font: "fontInstagram"),
-              tags("",null, cor1: Color(0xffb40f0f),cor2: Color(0xffea0303), gerar: Image.asset("youtube.png",height: 80,),),
+              tags("facebook", "https://pt-br.facebook.com/Unit.br/",font: "fontFacebook", cor1: Color(0xff0065e0),cor2: Color(0xff18acfe)),
+              tags("instagram","https://www.instagram.com/unit_br/?hl=pt-br",font: "fontInstagram"),
+              tags("", "https://www.youtube.com/channel/UC6JkyQiDmEx8n4ChXuOC25Q", cor1: Color(0xffb40f0f),cor2: Color(0xffea0303), gerar: Image.asset("youtube.png",height: 80,),),
             ],
           )
         )
@@ -80,7 +80,7 @@ Widget tags(String texto, dynamic abrirPag,{String font,Color cor1, Color cor2, 
                 Navigator.of(context).push(
                   MaterialPageRoute<Null>(builder: (BuildContext context) {
                 return abrirPag;
-              })) : abrirPag;
+              })) : url.launch(abrirPag);
               },
             ),
           )

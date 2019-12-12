@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-//import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart' as url;
 
 class WebViewWebPage extends StatelessWidget {
 
@@ -28,12 +28,6 @@ class WebViewWebPage extends StatelessWidget {
     );
   }
 }
-
-/*launchURL() async {
-  const url = 'https://flutter.dev';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}*/
+void abrir(){
+  url.launch("https://www.google.com.br/");
+}
