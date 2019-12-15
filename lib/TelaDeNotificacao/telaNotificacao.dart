@@ -15,48 +15,6 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
   bool vNotifica = true;
   String gerarText = "Lorem ipsum dolor sit amet consectetur adipiscing elit porttitor senectus, tellus interdum tincidunt proin mauris maximus libero non torquent duis, accumsan facilisis elementum cras ad suspendisse iaculis habitant. Iaculis class vehicula maecenas porta senectus hendrerit proin varius sodales in dui urna primis, massa praesent ex hac dignissim facilisi lectus ad neque conubia cursus. Semper duis phasellus tempus erat odio ac pellentesque, tellus feugiat tortor luctus congue elementum consequat, mi";
   var now = new DateTime.now();
-  List <bool> corAvaliarAtivar=[false,false,false,false,false];
-  void corAvaliacao(int i){
-    setState(() {
-      switch (i) {
-        case 0:
-        corAvaliarAtivar[0] = true;
-        corAvaliarAtivar[1] = false;
-        corAvaliarAtivar[2] = false;
-        corAvaliarAtivar[3] = false;
-        corAvaliarAtivar[4] = false;
-          break;
-        case 1:
-        corAvaliarAtivar[0] = true;
-        corAvaliarAtivar[1] = true;
-        corAvaliarAtivar[2] = false;
-        corAvaliarAtivar[3] = false;
-        corAvaliarAtivar[4] = false;
-          break;
-        case 2:
-        corAvaliarAtivar[0] = true;
-        corAvaliarAtivar[1] = true;
-        corAvaliarAtivar[2] = true;
-        corAvaliarAtivar[3] = false;
-        corAvaliarAtivar[4] = false;
-          break;
-        case 3:
-        corAvaliarAtivar[0] = true;
-        corAvaliarAtivar[1] = true;
-        corAvaliarAtivar[2] = true;
-        corAvaliarAtivar[3] = true;
-        corAvaliarAtivar[4] = false;
-          break;
-        case 4:
-        corAvaliarAtivar[0] = true;
-        corAvaliarAtivar[1] = true;
-        corAvaliarAtivar[2] = true;
-        corAvaliarAtivar[3] = true;
-        corAvaliarAtivar[4] = true;
-          break;
-      }
-    });
-  }
   void comandDrawer(int aut){
     setState(() {
       switch (aut) {
@@ -97,22 +55,6 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Color(0xff0c3467),
-                centerTitle: true,
-                title: Text('Notificações',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontFamily: "fontInstagram"
-                ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(30),
-                  ),
-                ),
-              ),
-              extendBody: true,
               body: Stack(
                 children: <Widget>[
                    Center(
@@ -131,18 +73,37 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
                           ),
                           card("avatar1.png",
                               "Professor Chavier!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xffef79cc), Color(0xff917ff1), vTodos,  0, Tela_notificacao(cor1: Color(0xffef79cc), cor2: Color(0xff917ff1), texto: gerarText, professor: "Professor Chavier")),
+                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xffef79cc), Color(0xff917ff1), vTodos,  0, Tela_notificacao(cor1: Color(0xffef79cc), cor2: Color(0xff917ff1), texto: gerarText, professor: "Professor Chavier", iconatt: Icons.all_inclusive, fotoProf: "avatar1.png",)),
                           card("avatar2.png",
                               "Professor Carlos!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xff53c5f5), Color(0xff4560b2), vAva, 1, Tela_notificacao(cor1: Color(0xff53c5f5), cor2: Color(0xff4560b2),texto: gerarText,professor: "Professor Carlos",)),
+                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xff53c5f5), Color(0xff4560b2), vAva, 1, Tela_notificacao(cor1: Color(0xff53c5f5), cor2: Color(0xff4560b2),texto: gerarText,professor: "Professor Carlos",iconatt: Icons.assignment_turned_in, fotoProf: "avatar2.png",)),
                           card("avatar3.png",
                               "Professor Jonas!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xfffacf78), Color(0xfffb7e72), vAviso, 2,Tela_notificacao(cor1: Color(0xfffacf78),cor2: Color(0xfffb7e72),texto: gerarText,professor: "Professor Jonas",)),
+                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xfffacf78), Color(0xfffb7e72), vAviso, 2,Tela_notificacao(cor1: Color(0xfffacf78),cor2: Color(0xfffb7e72),texto: gerarText,professor: "Professor Jonas",iconatt: Icons.error_outline, fotoProf: "avatar3.png",)),
                           card("avatar4.png",
                               "Professora Maria!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xff31a7f6), Color(0xff1ff4b4), vNotifica, 3,Tela_notificacao(cor1: Color(0xff31a7f6), cor2: Color(0xff1ff4b4),texto: gerarText,professor: "Professora Maria",)),
+                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xff31a7f6), Color(0xff1ff4b4), vNotifica, 3,Tela_notificacao(cor1: Color(0xff31a7f6), cor2: Color(0xff1ff4b4),texto: gerarText,professor: "Professora Maria",iconatt: Icons.notifications_active, fotoProf: "avatar4.png",)),
                         ],
-                    )
+                    ),
+                  Container(
+                    height: 80,
+                    child: AppBar(
+                      backgroundColor: Color(0xff0c3467),
+                      centerTitle: true,
+                      automaticallyImplyLeading: true,
+                      title: Text("Notificações",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontFamily: "fontInstagram"
+                      ),
+                      ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(30),
+                            ),
+                          ),
+                    ),
+                  ),
                 ],
               ),
               drawer: Container(

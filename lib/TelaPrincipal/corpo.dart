@@ -1,7 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:magister_re/TelaDeNotificacao/telaNotificacao.dart';
-import 'package:magister_re/selectCards/unitNaWeb.dart';
+import 'package:magister_re/selectCards/recursosCard/recursos.dart';
+import 'package:magister_re/selectCards/unitWebCard/unitNaWeb.dart';
 
 
 class Magister extends StatefulWidget {
@@ -134,7 +135,7 @@ class _MagisterState extends State<Magister> {
                           controller: pageController,
                           children: <Widget>[
                             corpo(Icons.school,  "Acadêmico"),
-                            corpo(Icons.rate_review, "Recursos"),
+                            corpo(Icons.rate_review, "Recursos", executarCard: TelaRecursos()),
                             corpo(Icons.tv, "Unit na Web", executarCard: CardWeb()),
                           ],
                         ),

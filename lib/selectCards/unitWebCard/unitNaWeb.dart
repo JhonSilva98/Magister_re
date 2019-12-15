@@ -1,36 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:magister_re/selectCards/openwebpage.dart';
+import 'package:magister_re/selectCards/unitWebCard/openwebpage.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 class CardWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff0c3467),
-        centerTitle: true,
-        title: Text('Unit na Web',
-        style: TextStyle(
-          fontSize: 40,
-          fontFamily: "fontInstagram"
-        ),
-        ),
-        /*shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
+      body: Stack(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 50.0),
+            child: Container(
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    tags("Unit Notícias", WebViewWebPage(), cor1: Color(0xff183883),cor2: Color(0xff255ba6), gerar: Row(children: <Widget>[Text("Unit Notícias",style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),), Icon(Icons.fiber_new, size: 80, color: Colors.white,)],), context: context),
+                    tags("facebook", "https://pt-br.facebook.com/Unit.br/",font: "fontFacebook", cor1: Color(0xff0065e0),cor2: Color(0xff18acfe)),
+                    tags("instagram","https://www.instagram.com/unit_br/?hl=pt-br",font: "fontInstagram"),
+                    tags("", "https://www.youtube.com/channel/UC6JkyQiDmEx8n4ChXuOC25Q", cor1: Color(0xffb40f0f),cor2: Color(0xffea0303), gerar: Image.asset("youtube.png",height: 80,),),
+                  ],
+                )
+              )
+            ),
           ),
-        ),*/
-      ),
-      body: Container(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              tags("Unit Notícias", WebViewWebPage(), cor1: Color(0xff183883),cor2: Color(0xff255ba6), gerar: Row(children: <Widget>[Text("Unit Notícias",style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),), Icon(Icons.fiber_new, size: 80, color: Colors.white,)],), context: context),
-              tags("facebook", "https://pt-br.facebook.com/Unit.br/",font: "fontFacebook", cor1: Color(0xff0065e0),cor2: Color(0xff18acfe)),
-              tags("instagram","https://www.instagram.com/unit_br/?hl=pt-br",font: "fontInstagram"),
-              tags("", "https://www.youtube.com/channel/UC6JkyQiDmEx8n4ChXuOC25Q", cor1: Color(0xffb40f0f),cor2: Color(0xffea0303), gerar: Image.asset("youtube.png",height: 80,),),
-            ],
-          )
-        )
+          Container(
+            height: 80,
+            child: AppBar(
+              backgroundColor: Color(0xff0c3467),
+              centerTitle: true,
+              automaticallyImplyLeading: true,
+              title: Text("Unit na Web",
+              style: TextStyle(
+                fontSize: 40,
+                fontFamily: "fontInstagram"
+              ),
+              ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(30),
+                    ),
+                  ),
+            ),
+          ),
+        ],
       ),
     );
   }
