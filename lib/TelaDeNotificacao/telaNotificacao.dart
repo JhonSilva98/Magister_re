@@ -55,6 +55,22 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+              appBar: AppBar(
+                      backgroundColor: Color(0xff0c3467),
+                      centerTitle: true,
+                      automaticallyImplyLeading: true,
+                      title: Text("Notificações",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontFamily: "fontInstagram"
+                      ),
+                      ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              bottom: Radius.circular(30),
+                            ),
+                          ),
+                    ),
               body: Stack(
                 children: <Widget>[
                    Center(
@@ -85,25 +101,6 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
                               "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xff31a7f6), Color(0xff1ff4b4), vNotifica, 3,Tela_notificacao(cor1: Color(0xff31a7f6), cor2: Color(0xff1ff4b4),texto: gerarText,professor: "Professora Maria",iconatt: Icons.notifications_active, fotoProf: "avatar4.png",)),
                         ],
                     ),
-                  Container(
-                    height: 80,
-                    child: AppBar(
-                      backgroundColor: Color(0xff0c3467),
-                      centerTitle: true,
-                      automaticallyImplyLeading: true,
-                      title: Text("Notificações",
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontFamily: "fontInstagram"
-                      ),
-                      ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(30),
-                            ),
-                          ),
-                    ),
-                  ),
                 ],
               ),
               drawer: Container(
