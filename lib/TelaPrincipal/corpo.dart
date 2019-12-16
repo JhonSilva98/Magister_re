@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:magister_re/TelaDeNotificacao/telaNotificacao.dart';
+import 'package:magister_re/selectCards/academico/academico.dart';
 import 'package:magister_re/selectCards/recursosCard/recursos.dart';
 import 'package:magister_re/selectCards/unitWebCard/unitNaWeb.dart';
 
@@ -32,7 +33,7 @@ class _MagisterState extends State<Magister> {
   void initState() {
     // TODO: implement initState
     pageController = PageController(initialPage: 0, viewportFraction: 0.8);
-    pageController2 = PageController(initialPage: 0);
+    pageController2 = PageController(initialPage: 0,);
 
     super.initState();
   }
@@ -134,7 +135,7 @@ class _MagisterState extends State<Magister> {
                           scrollDirection: Axis.horizontal,
                           controller: pageController,
                           children: <Widget>[
-                            corpo(Icons.school,  "Acadêmico"),
+                            corpo(Icons.school,  "Acadêmico", executarCard: Academico()),
                             corpo(Icons.rate_review, "Recursos", executarCard: TelaRecursos()),
                             corpo(Icons.tv, "Unit na Web", executarCard: CardWeb()),
                           ],

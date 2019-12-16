@@ -7,12 +7,19 @@ class Academico extends StatefulWidget {
 
 class _Academico extends State<Academico> {
   PageController pageController;
+  PageController pageController2;
   List<dynamic> listaCor =[
     [Color(0xFFFD8183), Color(0xFFFB425A)],
     [Color(0xFFF8C08E), Color(0xFFFDA65B)],
     [Color(0xFF6CD8F0), Color(0xFF6AD89D)],
     [Color(0xFFEE0979), Color(0xFFFF6A00)],
     [Color(0xFFFBD3E9), Color(0xFFBB377D)],
+    [Color(0xffef79cc), Color(0xff917ff1)],
+    [Color(0xff53c5f5), Color(0xff4560b2)],
+    [Color(0xfffacf78), Color(0xfffb7e72)],
+    [Color(0xff31a7f6), Color(0xff1ff4b4)],
+    [Color(0xffef8754), Color(0xff912222)]
+
   ];
   Color back1 = Color(0xFFFD8183);
   Color back2 = Color(0xFFFB425A);
@@ -21,6 +28,7 @@ class _Academico extends State<Academico> {
   void initState() {
     // TODO: implement initState
     pageController = PageController(initialPage: 0, viewportFraction: 0.8);
+    pageController2 = PageController(initialPage: 0);
     
     super.initState();
   }
@@ -49,41 +57,149 @@ class _Academico extends State<Academico> {
                   case 0:
                     back1 = listaCor[0][0];
                     back2 = listaCor[0][1];
+                    pageController2.animateToPage(
+                      0,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
                     break;
                   case 1:
                     back1 = listaCor[1][0];
                     back2 = listaCor[1][1];
+                    pageController2.animateToPage(
+                      0,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
                     break;
                   case 2:
                     back1 = listaCor[2][0];
                     back2 = listaCor[2][1];
-                    break;  
+                    pageController2.animateToPage(
+                      0,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
+                  case 3:
+                    back1 = listaCor[3][0];
+                    back2 = listaCor[3][1];
+                    pageController2.animateToPage(
+                      0,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
+                  case 4:
+                    back1 = listaCor[4][0];
+                    back2 = listaCor[4][1];
+                    pageController2.animateToPage(
+                      0,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
+                  case 5:
+                    back1 = listaCor[5][0];
+                    back2 = listaCor[5][1];
+                    pageController2.animateToPage(
+                      1,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
+                  case 6:
+                    back1 = listaCor[6][0];
+                    back2 = listaCor[6][1];
+                    pageController2.animateToPage(
+                      1,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
+                  case 7:
+                    back1 = listaCor[7][0];
+                    back2 = listaCor[7][1];
+                    pageController2.animateToPage(
+                      1,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
+                  case 8:
+                    back1 = listaCor[8][0];
+                    back2 = listaCor[8][1];
+                    pageController2.animateToPage(
+                      1,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
+                  case 9:
+                    back1 = listaCor[9][0];
+                    back2 = listaCor[9][1];
+                    pageController2.animateToPage(
+                      1,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.linear
+                    );
+                    break;
                 }
                 });
               },
               children: <Widget>[
-                cardsMensagens( "Wifi", Icons.wifi, "Acesso ao Wifi Unit - Universidade Tiradentes", listaCor[0][1]),
-                cardsMensagens("Avaliar o Magister", Icons.mobile_screen_share, "Avalie o Aplicativo Magister", listaCor[1][1]),
-                cardsMensagens("Biblioteca", Icons.book, "Avalie sua Biblioteca", listaCor[2][1])
-                
+                cardsMensagens( "Horários", Icons.schedule, "Veja aqui seu Horário de aula", listaCor[0][1]),
+                cardsMensagens("Calendário", Icons.calendar_today, "Veja seu calendário do ano letivo", listaCor[1][1]),
+                cardsMensagens("Matricula", Icons.monetization_on, "Veja se sua matricula foi processada", listaCor[2][1]),
+                cardsMensagens("Notas e faltas", Icons.assignment_turned_in, "Suas notas do bimestre", listaCor[3][1]),
+                cardsMensagens("Pagamentos", Icons.attach_money, "Imprima seus boletos mensais", listaCor[4][1]),
+                cardsMensagens("Calcule sua média", Icons.receipt, "Faça as contas de sua média", listaCor[5][1]),
+                cardsMensagens("Biblioteca", Icons.local_library, "Veja todos nossos livros do banco", listaCor[6][1]),
+                cardsMensagens("Protocolos", Icons.chrome_reader_mode, "Abra sua ocorrência", listaCor[7][1]),
+                cardsMensagens("Pendências", Icons.pie_chart_outlined, "Veja se você tem alguma pendência", listaCor[8][1]),
+                cardsMensagens("Material de aula", Icons.category, "Quais materiais de aula", listaCor[9][1]),                
               ],
             ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 80,
+                child: PageView(
+                  controller: pageController2,
                   children: <Widget>[
-                    bootomNav(Icons.schedule,listaCor[0][1], 0, "btn1"),
-                    bootomNav(Icons.calendar_today, listaCor[1][1],1, "btn2"),
-                    bootomNav(Icons.attach_money, listaCor[2][1],2, "btn3")
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          bootomNav(Icons.schedule,listaCor[0][1], 0, "btn0"),
+                          bootomNav(Icons.calendar_today, listaCor[1][1],1, "btn1"),
+                          bootomNav(Icons.monetization_on, listaCor[2][1],2, "btn2"),
+                          bootomNav(Icons.assignment_turned_in,listaCor[3][1], 3, "btn3"),
+                          bootomNav(Icons.attach_money, listaCor[4][1],4, "btn4"),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          bootomNav(Icons.receipt,listaCor[5][1], 5, "btn5"),
+                          bootomNav(Icons.local_library, listaCor[6][1],6, "btn6"),
+                          bootomNav(Icons.chrome_reader_mode, listaCor[7][1],7, "btn7"),
+                          bootomNav(Icons.pie_chart_outlined,listaCor[8][1], 8, "btn8"),
+                          bootomNav(Icons.category, listaCor[9][1],9, "btn9"),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
+              )
             ],
-          ) ,
+          ),
           Container(
             height: 80,
             child: AppBar(
@@ -91,7 +207,7 @@ class _Academico extends State<Academico> {
               backgroundColor: Color(0xff0c3467),
               centerTitle: true,
               automaticallyImplyLeading: true,
-              title: Text("Recursos",
+              title: Text("Acadêmico",
               style: TextStyle(
                 fontSize: 40,
                 fontFamily: "fontInstagram"
@@ -108,7 +224,6 @@ class _Academico extends State<Academico> {
       ),
     );
   }
-
   Widget cardsMensagens ( String nomeWidget, var iconNotificacao, String texto , Color cor){
       return Center(
         child: Card(
@@ -217,61 +332,7 @@ class _Academico extends State<Academico> {
       },
       elevation: 10,
       backgroundColor: cor,
-      child: Icon(icone, size: 40,),
+      child: Icon(icone, size: 35,),
     );
   }
-}
-
-Widget icons (String texto, var icone){
-  return Container(
-    height: 120,
-    width: 170,
-    decoration: BoxDecoration(
-      border: Border.all(
-        color: Colors.white
-      ),
-      color: Color(0xff389ee6),
-      borderRadius: BorderRadius.all(Radius.elliptical(20, 20)),
-      gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: [
-          Colors.blue,
-          Colors.blue[300],
-        ],
-        stops: [0.4,1]
-      )
-    ),
-  child: Stack(
-    children: <Widget>[
-      Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Material(
-              type: MaterialType.transparency,
-              child: Text("$texto",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
-              )),
-          ],
-        ),
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Opacity(opacity: 0.4,child: Icon(icone, size: 80, color: Colors.white,)),
-            ],
-          ),
-        ],
-      )
-    ],
-  ),
-  );
 }

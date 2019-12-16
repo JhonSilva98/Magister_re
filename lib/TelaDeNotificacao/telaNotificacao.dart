@@ -88,17 +88,13 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
                               height: 20,
                           ),
                           card("avatar1.png",
-                              "Professor Chavier!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xffef79cc), Color(0xff917ff1), vTodos,  0, Tela_notificacao(cor1: Color(0xffef79cc), cor2: Color(0xff917ff1), texto: gerarText, professor: "Professor Chavier", iconatt: Icons.all_inclusive, fotoProf: "avatar1.png",)),
+                              "Professor Chavier!", Color(0xffef79cc), Color(0xff917ff1), vTodos,  0, Tela_notificacao(cor1: Color(0xffef79cc), cor2: Color(0xff917ff1), texto: gerarText, professor: "Professor Chavier", iconatt: Icons.all_inclusive, fotoProf: "avatar1.png",)),
                           card("avatar2.png",
-                              "Professor Carlos!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xff53c5f5), Color(0xff4560b2), vAva, 1, Tela_notificacao(cor1: Color(0xff53c5f5), cor2: Color(0xff4560b2),texto: gerarText,professor: "Professor Carlos",iconatt: Icons.assignment_turned_in, fotoProf: "avatar2.png",)),
+                              "Professor Carlos!", Color(0xff53c5f5), Color(0xff4560b2), vAva, 1, Tela_notificacao(cor1: Color(0xff53c5f5), cor2: Color(0xff4560b2),texto: gerarText,professor: "Professor Carlos",iconatt: Icons.assignment_turned_in, fotoProf: "avatar2.png",)),
                           card("avatar3.png",
-                              "Professor Jonas!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xfffacf78), Color(0xfffb7e72), vAviso, 2,Tela_notificacao(cor1: Color(0xfffacf78),cor2: Color(0xfffb7e72),texto: gerarText,professor: "Professor Jonas",iconatt: Icons.error_outline, fotoProf: "avatar3.png",)),
+                              "Professor Jonas!", Color(0xfffacf78), Color(0xfffb7e72), vAviso, 2,Tela_notificacao(cor1: Color(0xfffacf78),cor2: Color(0xfffb7e72),texto: gerarText,professor: "Professor Jonas",iconatt: Icons.error_outline, fotoProf: "avatar3.png",)),
                           card("avatar4.png",
-                              "Professora Maria!",
-                              "Hoje vamos mostrar o quanto kjkdkfdkgkdghkfgmndnndmgndmgndmgndgm...", Color(0xff31a7f6), Color(0xff1ff4b4), vNotifica, 3,Tela_notificacao(cor1: Color(0xff31a7f6), cor2: Color(0xff1ff4b4),texto: gerarText,professor: "Professora Maria",iconatt: Icons.notifications_active, fotoProf: "avatar4.png",)),
+                              "Professora Maria!", Color(0xff31a7f6), Color(0xff1ff4b4), vNotifica, 3,Tela_notificacao(cor1: Color(0xff31a7f6), cor2: Color(0xff1ff4b4),texto: gerarText,professor: "Professora Maria",iconatt: Icons.notifications_active, fotoProf: "avatar4.png",)),
                         ],
                     ),
                 ],
@@ -160,7 +156,7 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
   )
   );
 }
-  Widget card (String avatar, String titulo , String subtitulo, Color cor1, Color cor2, bool visu, int pos, var pagNot){
+  Widget card (String avatar, String titulo, Color cor1, Color cor2, bool visu, int pos, var pagNot){
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: Center(
@@ -181,7 +177,6 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
               ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              stops: [0.3,1]
             )
           ),
           child: Stack(

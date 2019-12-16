@@ -61,16 +61,6 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: AppBar(
-        backgroundColor: Color(0xff0c3467),
-        centerTitle: true,
-        title: Text('Avaliação',
-          style: TextStyle(
-          fontSize: 40,
-          fontFamily: "fontInstagram"
-        ),
-        ),
-      ),*/
       body: Stack(
         children: <Widget>[
           Padding(
@@ -95,7 +85,7 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
                     Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      cardsMensagens(widget.fotoProf, widget.professor, widget.iconatt, widget.texto)
+                      cardsMensagens(widget.fotoProf, widget.professor, widget.iconatt, widget.texto, widget.cor2)
                     ],
                   ),
                   ],
@@ -126,7 +116,7 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
       ),
     );
   }
-  Widget cardsMensagens (String fotoProf, String nomeProf, var iconNotificacao, String texto){
+  Widget cardsMensagens (String fotoProf, String nomeProf, var iconNotificacao, String texto, Color cor){
       return Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -150,8 +140,24 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
                 children: <Widget>[
                   Text(nomeProf,
                       style: TextStyle(
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.w700,)),
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          blurRadius: 5.0,
+                          color: Colors.black,
+                          offset: Offset(5.0, 1.0),
+                        ),
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 5.0,
+                          offset: Offset(5.0, 3.0),
+                        ),
+                      ],
+                    ),
+                          
+                          ),
                   Padding(
                     padding: EdgeInsets.only(top: 15.0),
                     child: Row(
@@ -173,14 +179,15 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.blue
+                      color: cor
                   ),
                   width: 70,
                   height: 1.0,
                 ),
                 Container(
                   child: OutlineButton(
-                    borderSide: BorderSide(color: Colors.blue),
+                    splashColor: cor,
+                    borderSide: BorderSide(color: cor),
                     onPressed: () => null,
                     shape: StadiumBorder(),
                     child: SizedBox(
@@ -188,7 +195,7 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
                       height: 45.0,
                       child: Center(
                           child: Icon(iconNotificacao,
-                          color: Colors.blue,
+                          color: cor,
                           )
                               ),
                     ),
@@ -196,7 +203,7 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.blue
+                      color: cor
                   ),
                   width: 70,
                   height: 1.0,
