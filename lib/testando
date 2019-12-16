@@ -1,277 +1,246 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:magister_re/TelaDeNotificacao/telaNotificacao.dart';
+import 'package:magister_re/selectCards/academico/academico.dart';
+import 'package:magister_re/selectCards/recursosCard/recursos.dart';
+import 'package:magister_re/selectCards/unitWebCard/unitNaWeb.dart';
 
-class Academico extends StatefulWidget {
+
+class Magister extends StatefulWidget {
   @override
-  _Academico createState() => _Academico();
+  _MagisterState createState() => _MagisterState();
 }
 
-class _Academico extends State<Academico> {
-  PageController pageController;
-  List<dynamic> listaCor =[
-    [Color(0xFFFD8183), Color(0xFFFB425A)],
-    [Color(0xFFF8C08E), Color(0xFFFDA65B)],
-    [Color(0xFF6CD8F0), Color(0xFF6AD89D)],
-    [Color(0xFFEE0979), Color(0xFFFF6A00)],
-    [Color(0xFFFBD3E9), Color(0xFFBB377D)],
-  ];
-  Color back1 = Color(0xFFFD8183);
-  Color back2 = Color(0xFFFB425A);
+class _MagisterState extends State<Magister> {
+  int bottomSelectedIndex = 0;
+  var pageController;
+  PageController pageController2;
+  int _curIndex2 = 0;
+ 
   
-  @override
+  void pageChanged(int index) {
+    setState(() {
+      bottomSelectedIndex = index;
+    });
+  }
+  void bottomTapped(int index) {
+    setState(() {
+      bottomSelectedIndex = index;
+      pageController2.animateToPage(index,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
+    });
+  }
   void initState() {
     // TODO: implement initState
     pageController = PageController(initialPage: 0, viewportFraction: 0.8);
-    
+    pageController2 = PageController(initialPage: 0,);
+
     super.initState();
+  }
+  void dispose() {
+    pageController2.dispose();
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width ,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [back1, back2]
-                )
-              ),
-            ),
-          PageView(
-              scrollDirection: Axis.horizontal,
-              controller: pageController,
-              onPageChanged: (index){
-                setState(() {
-                  switch (index) {
-                  case 0:
-                    back1 = listaCor[0][0];
-                    back2 = listaCor[0][1];
-                    break;
-                  case 1:
-                    back1 = listaCor[1][0];
-                    back2 = listaCor[1][1];
-                    break;
-                  case 2:
-                    back1 = listaCor[2][0];
-                    back2 = listaCor[2][1];
-                    break;  
-                }
-                });
-              },
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: Color(0xff0c3467),
+        child: PageView(
+          onPageChanged: (index) {
+            setState(() {
+              _curIndex2 = index;
+            });
+          },
+          scrollDirection: Axis.horizontal,
+          controller: pageController2,
+          children: <Widget>[
+            Stack(
               children: <Widget>[
-                cardsMensagens( "Wifi", Icons.wifi, "Acesso ao Wifi Unit - Universidade Tiradentes", listaCor[0][1]),
-                cardsMensagens("Avaliar o Magister", Icons.mobile_screen_share, "Avalie o Aplicativo Magister", listaCor[1][1]),
-                cardsMensagens("Biblioteca", Icons.book, "Avalie sua Biblioteca", listaCor[2][1])
-                
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Center(
+                      child: Padding(
+                      padding: const EdgeInsets.only(top: 40.0),
+                      child: Text("Magister",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontFamily: "fontInstagram"
+                      ),
+                      ),
+                    )),
+                  ],
+                ),                
+                Padding(
+                  padding: const EdgeInsets.only(top: 40, right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        height: 75,
+                        width: 65,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: CircleAvatar(child: Image.asset("avatar2.png"),),
+                      )
+                    ],
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 80.0),
+                      child: Center(
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white
+                            ),
+                            borderRadius: BorderRadius.circular(100)
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Image.asset(
+                              "simbolo.png",
+                              height: 100,
+                              width: 100,
+                              ),
+                          ),
+                        )),
+                    ),
+                    SizedBox(
+                      height: 75,
+                    ),                   
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                        height: 300,
+                        width: MediaQuery.of(context).size.width,
+                        child: PageView(
+                          scrollDirection: Axis.horizontal,
+                          controller: pageController,
+                          children: <Widget>[
+                            corpo(Icons.school,  "Acadêmico", executarCard: Academico()),
+                            corpo(Icons.rate_review, "Recursos", executarCard: TelaRecursos()),
+                            corpo(Icons.tv, "Unit na Web", executarCard: CardWeb()),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                  ],
+                ),
               ],
             ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    bootomNav(Icons.schedule,listaCor[0][1], 0, "btn1"),
-                    bootomNav(Icons.calendar_today, listaCor[1][1],1, "btn2"),
-                    bootomNav(Icons.attach_money, listaCor[2][1],2, "btn3")
-                  ],
-                ),
-              ),
-            ],
-          ) ,
-          Container(
-            height: 80,
-            child: AppBar(
-              elevation: 10,
-              backgroundColor: Color(0xff0c3467),
-              centerTitle: true,
-              automaticallyImplyLeading: true,
-              title: Text("Recursos",
-              style: TextStyle(
-                fontSize: 40,
-                fontFamily: "fontInstagram"
-              ),
-              ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(30),
-                    ),
-                  ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget cardsMensagens ( String nomeWidget, var iconNotificacao, String texto , Color cor){
-      return Center(
-        child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            elevation: 25.0,
-            child: Container(
-              height: MediaQuery.of(context).size.height - 250,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: cor,
-                      child: Icon(iconNotificacao, size: 50, color: Colors.white,),
-                    ),
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          Text(nomeWidget,
-                              style: TextStyle(
-                                  fontSize: 40.0,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "fontInstagram",
-                                  color: cor
-                                  )),
-                        ],
-                        ),
-                ),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 50,
-                      height: MediaQuery.of(context).size.width /2 ,
-                      child: ListView(
-                        children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text(texto,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20
-                                ),
-                                ),
-                              )
-                            ],
-                          ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color: cor
-                          ),
-                          width: 70,
-                          height: 1.0,
-                        ),
-                        Container(
-                          child: OutlineButton(
-                            splashColor: cor,
-                            borderSide: BorderSide(color: cor),
-                            onPressed: () => null,
-                            shape: StadiumBorder(),
-                            child: SizedBox(
-                              width: 60.0,
-                              height: 45.0,
-                              child: Center(
-                                  child: Icon(iconNotificacao,
-                                  color: cor,
-                                  )
-                                      ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: cor
-                          ),
-                          width: 70,
-                          height: 1.0,
-                        ),
-                      ],
-                    ),
-                  ],
-                ) ,
-              ),
-            ),
-          ),
-      );
-    } 
-  Widget bootomNav (var icone, Color cor, int index,String hero){
-    return FloatingActionButton(
-      heroTag: hero,
-      onPressed: (){
-        setState(() {
-          pageController.animateToPage(
-            index,
-            duration: Duration(milliseconds: 300),
-            curve: Curves.linear
-            );
-        });
-      },
-      elevation: 10,
-      backgroundColor: cor,
-      child: Icon(icone, size: 40,),
-    );
-  }
-}
-
-Widget icons (String texto, var icone){
-  return Container(
-    height: 120,
-    width: 170,
-    decoration: BoxDecoration(
-      border: Border.all(
-        color: Colors.white
-      ),
-      color: Color(0xff389ee6),
-      borderRadius: BorderRadius.all(Radius.elliptical(20, 20)),
-      gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
-        colors: [
-          Colors.blue,
-          Colors.blue[300],
-        ],
-        stops: [0.4,1]
-      )
-    ),
-  child: Stack(
-    children: <Widget>[
-      Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Material(
-              type: MaterialType.transparency,
-              child: Text("$texto",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
-              )),
+            Tela_Notificacao()
           ],
         ),
       ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Opacity(opacity: 0.4,child: Icon(icone, size: 80, color: Colors.white,)),
-            ],
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: _curIndex2,
+        onItemSelected: (index) {
+          setState(() => _curIndex2 = index);
+          pageController2.jumpToPage(index);
+        },
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            title: Text('Inicial'),
+            icon: Icon(Icons.home)
+          ),
+          BottomNavyBarItem(
+            title: Text('Notificações'),
+            icon: Icon(Icons.notifications)
           ),
         ],
-      )
-    ],
-  ),
-  );
+      ),
+    );
+  }
+  Widget corpo(dynamic icone, String texto, {var executarCard}){
+    return Center(
+        child: Container(
+                height: 350,
+                width: 260,
+                decoration: BoxDecoration(
+                  boxShadow: [BoxShadow(color: Colors.black.withAlpha(70), offset: const Offset(3.0, 10.0), blurRadius: 15.0)],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.elliptical(20, 20)),
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.black
+                  )
+                ),
+                child: FlatButton(
+                  splashColor: Color(0xff0c3467),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => executarCard));
+                  },
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Container(
+                            width: 300,
+                            height: 60,
+                            decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.all(Radius.elliptical(20, 20))
+                          ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 40),
+                        child: Center(
+                            child: Icon(icone, color: Color(0xff0c3467), size: 150,),
+                          ),
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Text("$texto",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 35,
+                                        color: Color(0xff0c3467)
+                                        ),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+        ),
+      );
+  }
 }

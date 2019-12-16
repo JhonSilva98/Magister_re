@@ -128,16 +128,16 @@ class _MagisterState extends State<Magister> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                         height: 300,
                         width: MediaQuery.of(context).size.width,
                         child: PageView(
                           scrollDirection: Axis.horizontal,
                           controller: pageController,
                           children: <Widget>[
-                            corpo(Icons.school,  "Acadêmico", executarCard: Academico()),
-                            corpo(Icons.rate_review, "Recursos", executarCard: TelaRecursos()),
-                            corpo(Icons.tv, "Unit na Web", executarCard: CardWeb()),
+                            cards("Acadêmico", Icons.school, executar: Academico()),
+                            cards("Recursos", Icons.rate_review, executar: TelaRecursos()),
+                            cards("Unit na Web", Icons.tv, executar: CardWeb()),
                           ],
                         ),
                       ),
@@ -172,75 +172,83 @@ class _MagisterState extends State<Magister> {
       ),
     );
   }
-  Widget corpo(dynamic icone, String texto, {var executarCard}){
-    return Center(
-        child: Container(
-                height: 350,
-                width: 260,
-                decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(color: Colors.black.withAlpha(70), offset: const Offset(3.0, 10.0), blurRadius: 15.0)],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.elliptical(20, 20)),
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.black
-                  )
-                ),
-                child: FlatButton(
-                  splashColor: Color(0xff0c3467),
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => executarCard));
-                  },
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
+  Widget cards ( String nomeWidget, var iconNotificacao, {var executar}){
+      return Center(
+        child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 25.0,
+            child: Container(
+              height: MediaQuery.of(context).size.height - 400,
+              width: MediaQuery.of(context).size.width - 100,
+              child: Container(
+                margin: EdgeInsets.only(top: 30.0, bottom: 30.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Color(0xff0c3467),
+                      child: Icon(iconNotificacao, size: 50, color: Colors.white,),
+                    ),
+                    Container(
+                      child: Column(
                         children: <Widget>[
-                          Container(
-                            width: 300,
-                            height: 60,
-                            decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.all(Radius.elliptical(20, 20))
-                          ),
-                          ),
+                          Text(nomeWidget,
+                              style: TextStyle(
+                                  fontSize: 40.0,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "fontInstagram",
+                                  color: Color(0xff0c3467)
+                                  )),
                         ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 40),
-                        child: Center(
-                            child: Icon(icone, color: Color(0xff0c3467), size: 150,),
+                        ),
+                ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff0c3467)
                           ),
-                      ),
-                      Stack(
-                        children: <Widget>[
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: Text("$texto",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 35,
-                                        color: Color(0xff0c3467)
-                                        ),
-                                    ),
+                          width: 70,
+                          height: 1.0,
+                        ),
+                        Container(
+                          child: OutlineButton(
+                            splashColor: Color(0xff0c3467),
+                            borderSide: BorderSide(color: Color(0xff0c3467)),
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => executar));
+                            },
+                            shape: StadiumBorder(),
+                            child: SizedBox(
+                              width: 60.0,
+                              height: 45.0,
+                              child: Center(
+                                  child: Icon(iconNotificacao,
+                                  color: Color(0xff0c3467),
                                   )
-                                ],
-                              )
-                            ],
+                                      ),
+                            ),
                           ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-        ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff0c3467)
+                          ),
+                          width: 70,
+                          height: 1.0,
+                        ),
+                      ],
+                    ),
+                  ],
+                ) ,
+              ),
+            ),
+          ),
       );
-  }
+    }
+
 }
