@@ -74,9 +74,8 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
                       widget.cor1,
                       widget.cor2,
                     ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    stops: [0.5,1]
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
                   )
                 ),
               child: Center(
@@ -96,6 +95,7 @@ class _Tela_notificacaoState extends State<Tela_notificacao> {
           Container(
             height: 80,
             child: AppBar(
+              elevation: 10,
               backgroundColor: Color(0xff0c3467),
               centerTitle: true,
               automaticallyImplyLeading: true,

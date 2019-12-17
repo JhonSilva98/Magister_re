@@ -25,6 +25,7 @@ class CardWeb extends StatelessWidget {
           Container(
             height: 80,
             child: AppBar(
+              elevation: 10,
               backgroundColor: Color(0xff0c3467),
               centerTitle: true,
               automaticallyImplyLeading: true,

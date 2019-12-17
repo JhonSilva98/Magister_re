@@ -56,6 +56,7 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
   Widget build(BuildContext context) {
     return Scaffold(
               appBar: AppBar(
+                      elevation: 10,
                       backgroundColor: Color(0xff0c3467),
                       centerTitle: true,
                       automaticallyImplyLeading: true,
@@ -87,13 +88,13 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
                           SizedBox(
                               height: 20,
                           ),
-                          card("avatar1.png",
-                              "Professor Chavier!", Color(0xffef79cc), Color(0xff917ff1), vTodos,  0, Tela_notificacao(cor1: Color(0xffef79cc), cor2: Color(0xff917ff1), texto: gerarText, professor: "Professor Chavier", iconatt: Icons.all_inclusive, fotoProf: "avatar1.png",)),
-                          card("avatar2.png",
-                              "Professor Carlos!", Color(0xff53c5f5), Color(0xff4560b2), vAva, 1, Tela_notificacao(cor1: Color(0xff53c5f5), cor2: Color(0xff4560b2),texto: gerarText,professor: "Professor Carlos",iconatt: Icons.assignment_turned_in, fotoProf: "avatar2.png",)),
-                          card("avatar3.png",
-                              "Professor Jonas!", Color(0xfffacf78), Color(0xfffb7e72), vAviso, 2,Tela_notificacao(cor1: Color(0xfffacf78),cor2: Color(0xfffb7e72),texto: gerarText,professor: "Professor Jonas",iconatt: Icons.error_outline, fotoProf: "avatar3.png",)),
-                          card("avatar4.png",
+                          card(Icons.all_inclusive,"avatar1.png",
+                              "Professor Chavier!", Color(0xFFFD8183), Color(0xFFFB425A), vTodos,  0, Tela_notificacao(cor1: Color(0xFFFD8183), cor2: Color(0xFFFB425A), texto: gerarText, professor: "Professor Chavier", iconatt: Icons.all_inclusive, fotoProf: "avatar1.png",)),
+                          card(Icons.assignment_turned_in,"avatar2.png",
+                              "Professor Carlos!", Color(0xFFF8C08E), Color(0xFFFDA65B), vAva, 1, Tela_notificacao(cor1: Color(0xFFF8C08E), cor2: Color(0xFFFDA65B),texto: gerarText,professor: "Professor Carlos",iconatt: Icons.assignment_turned_in, fotoProf: "avatar2.png",)),
+                          card(Icons.error_outline,"avatar3.png",
+                              "Professor Jonas!", Color(0xFFFBD3E9), Color(0xFFBB377D), vAviso, 2,Tela_notificacao(cor1: Color(0xFFFBD3E9),cor2: Color(0xFFBB377D),texto: gerarText,professor: "Professor Jonas",iconatt: Icons.error_outline, fotoProf: "avatar3.png",)),
+                          card(Icons.notifications_active,"avatar4.png",
                               "Professora Maria!", Color(0xff31a7f6), Color(0xff1ff4b4), vNotifica, 3,Tela_notificacao(cor1: Color(0xff31a7f6), cor2: Color(0xff1ff4b4),texto: gerarText,professor: "Professora Maria",iconatt: Icons.notifications_active, fotoProf: "avatar4.png",)),
                         ],
                     ),
@@ -119,9 +120,7 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
             );
   }
   Widget gerarGesture(var icone, int key, int aut){
-  return GestureDetector(
-    onTap: (){},
-    child: Column(
+  return Column(
       mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       Container(
@@ -153,17 +152,16 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
         ) ,
       ),
     ],
-  )
   );
 }
-  Widget card (String avatar, String titulo, Color cor1, Color cor2, bool visu, int pos, var pagNot){
+  Widget card (var icon,String avatar, String titulo, Color cor1, Color cor2, bool visu, int pos, var pagNot){
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: Center(
       child: Visibility(
         visible: visu,
         child: Container(
-          height: 150,
+          height: 180,
           width:  330,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.elliptical(20, 20)),
@@ -175,8 +173,8 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
                 cor1,
                 cor2
               ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
             )
           ),
           child: Stack(
@@ -230,14 +228,60 @@ class _Tela_NotificacaoState extends State<Tela_Notificacao> {
                   ],
                 ),
                 ),
-              )
-              ,SizedBox.expand(
+              ),
+              /*SizedBox.expand(
                 child: GestureDetector(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => pagNot));
                   },
                   ),
-              ),
+              ),*/
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white
+                            ),
+                            width: 70,
+                            height: 1.0,
+                          ),
+                          Container(
+                            child: OutlineButton(
+                              splashColor: cor2,
+                              borderSide: BorderSide(color: Colors.white),
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => pagNot));
+                              },
+                              shape: StadiumBorder(),
+                              child: SizedBox(
+                                width: 60.0,
+                                height: 45.0,
+                                child: Center(
+                                    child: Icon(icon,
+                                    color: Colors.white,
+                                    )
+                                        ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white
+                            ),
+                            width: 70,
+                            height: 1.0,
+                          ),
+                        ],
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),

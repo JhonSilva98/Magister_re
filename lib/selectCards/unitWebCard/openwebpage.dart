@@ -8,6 +8,7 @@ class WebViewWebPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 10,
         backgroundColor: Color(0xff0c3467),
         centerTitle: true,
         title: Text('Unit Notícias',
